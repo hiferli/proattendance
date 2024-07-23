@@ -4,29 +4,28 @@ const UploadAttendance = ({ name, id }) => {
     const [loginTime, setLoginTime] = useState("");
     const [logoutTime, setLogoutTime] = useState("");
     const [day, setDay] = useState("");
+    const [status, setStatus] = useState("Present");
+    const [overtime, setOvertime] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // Validate input fields
-        // TODO: Add some more validatoins
-        if (!loginTime || !logoutTime || !day) {
+        if (!loginTime || !logoutTime || !day || !status) {
             alert("Please fill in all fields.");
             return;
         }
 
-        // Example: You can perform further validation or processing here
-        // For simplicity, just displaying the collected data in this example
-        alert(
-            `Submitted Data:\nLogin Time: ${loginTime}\nLogout Time: ${logoutTime}\nDay: ${day}`
-        );
-
+        // Prepare data object
         const log = {
             day,
             loginTime,
             logoutTime,
+            status,
+            overtime: overtime || 0, // Default to 0 if overtime is empty
         };
 
+        // Store data in localStorage
         if (localStorage.getItem(id) === null) {
             localStorage.setItem(id, "[]");
         }
@@ -34,12 +33,18 @@ const UploadAttendance = ({ name, id }) => {
         let currentLogs = JSON.parse(localStorage.getItem(id));
         currentLogs.push(log);
         localStorage.setItem(id, JSON.stringify(currentLogs));
-        console.log("False");
 
-        // Clear the form after submission (optional)
+        // Confirmation message (can be removed in production)
+        alert(
+            `Submitted Data:\nLogin Time: ${loginTime}\nLogout Time: ${logoutTime}\nDay: ${day}\nStatus: ${status}\nOvertime: ${overtime}`
+        );
+
+        // Clear the form after submission
         setLoginTime("");
         setLogoutTime("");
         setDay("");
+        setStatus("Present");
+        setOvertime("");
     };
 
     return (
@@ -74,6 +79,28 @@ const UploadAttendance = ({ name, id }) => {
                         value={day}
                         onChange={(e) => setDay(e.target.value)}
                         required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="status">Status:</label>
+                    <select
+                        id="status"
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        required
+                    >
+                        <option value="Remote">Remote</option>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="overtime">Overtime (hours):</label>
+                    <input
+                        type="number"
+                        id="overtime"
+                        value={overtime}
+                        onChange={(e) => setOvertime(e.target.value)}
                     />
                 </div>
                 <div>
