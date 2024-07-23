@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logs from "../../Components/Admin/Logs";
 import Enquiry from "./Enquiry";
+import Statistics from "./Statistics";
 
 const Home = ({ name , id }) => {
     const [mode, setMode] = useState(0)
@@ -14,8 +15,7 @@ const Home = ({ name , id }) => {
 
         <div>
                 {mode === 1 ? (
-                    <></>
-                    // <UploadAttendance name={name} id={id} /
+                    <Statistics />
                 ) : mode === 2 ? (
                     <Enquiry />
                 ) : mode === 3 ? (
