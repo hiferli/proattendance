@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { employees } from "../../Data"; // Assuming you import the employees data
-import SearchInformation from "../../Components/Admin/SearchInformation";
-import Table from '../../Components/Table';
+import SearchInformation from "./SearchInformation";
+import Table from "../Table";
+import PieAttendance from "../Employee/Charts/PieAttendance";
+import HoursLineChart from "../Employee/Charts/HoursLineChart";
 
 const Enquiry = () => {
     const [id, setId] = useState("");
@@ -42,7 +44,11 @@ const Enquiry = () => {
                         <SearchInformation searchResult={searchResult} />
 
                         {data ? (
-                            <Table data={data} />
+                            <>
+                                <Table data={data} />
+                                <PieAttendance id={id} />
+                                <HoursLineChart id={id} />
+                            </>
                         ) : (
                             <p>No attendance logs found!</p>
                         )}

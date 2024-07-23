@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logs from "../../Components/Admin/Logs";
-import Enquiry from "./Enquiry";
-import Statistics from "./Statistics";
+import Enquiry from "../../Components/Admin/Enquiry";
+import Statistics from "../../Components/Admin/Statistics";
 
 const Home = ({ name , id }) => {
     const [mode, setMode] = useState(0)

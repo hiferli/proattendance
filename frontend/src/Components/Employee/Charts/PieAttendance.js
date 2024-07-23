@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAttendanceStatus } from "../Utils/GetAttendanceStatus";
+import { getAttendanceStatus } from "../../../Utils/GetAttendanceStatus";
 import { PieChart } from "@mui/x-charts/PieChart";
 
 const PieAttendance = ({ id }) => {

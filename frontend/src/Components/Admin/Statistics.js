@@ -1,5 +1,5 @@
 import React from "react";
-import Domains from "../../Components/Admin/Charts/Domains";
+import Domains from "./Charts/Domains";
 
 const Statistics = () => {
     return (
