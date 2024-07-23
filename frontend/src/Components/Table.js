@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 
 const Table = ({ data }) => {
-    useEffect(() => {
-        console.log(data);
-    }, []);
-
     return (
         <div>
             <h2>Attendance Data</h2>

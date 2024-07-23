@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Table from "../Table";
 
 const AttendanceHistory = ({ name, id }) => {
     const [data, setData] = useState([]);
@@ -21,24 +22,8 @@ const AttendanceHistory = ({ name, id }) => {
             <div>
                 <center>
                     <h2>Session Log</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Day</th>
-                                <th>Login Time</th>
-                                <th>Logout Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.map((session, index) => (
-                                <tr key={index}>
-                                    <td>{session.day}</td>
-                                    <td>{session.loginTime}</td>
-                                    <td>{session.logoutTime}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <Table data={data} />
+                    
                 </center>
             </div>
         );

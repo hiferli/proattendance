@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { employees } from "../../Data"; // Assuming you import the employees data
 import SearchInformation from "../../Components/Admin/SearchInformation";
-import Table from "../../Components/Admin/Table";
+import Table from '../../Components/Table';
 
 const Enquiry = () => {
     const [id, setId] = useState("");
