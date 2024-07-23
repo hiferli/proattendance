@@ -27,7 +27,6 @@ const UploadAttendance = ({ name, id }) => {
             logoutTime,
         };
 
-        // TODO: Add all of this to Localstorage
         if (localStorage.getItem(id) === null) {
             localStorage.setItem(id, "[]");
         }
