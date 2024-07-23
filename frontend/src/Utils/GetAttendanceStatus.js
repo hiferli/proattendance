@@ -8,7 +8,7 @@ export const getAttendanceStatus = (data) => {
 
     // Count occurrences of each status
     data.forEach((entry) => {
-        console.log(entry.status);
+        // console.log(entry.status);
         if(entry.status == "Present") counts.Present++;
         else if(entry.status == "Remote") counts.Remote++;
         else counts.Absent++;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "../Table";
 import PieAttendance from "../PieAttendance";
+import HoursLineChart from "./Charts/HoursLineChart";
 
 const AttendanceHistory = ({ name, id }) => {
     const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const AttendanceHistory = ({ name, id }) => {
                     <h2>Session Log</h2>
                     <Table data={data} />
                     <PieAttendance id={id} />
+                    <HoursLineChart id={id} />
                 </center>
             </div>
         );
