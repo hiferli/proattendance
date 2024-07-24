@@ -3,22 +3,16 @@ import { extractWorkData } from "../../../Utils/GetTotalWorkedHours";
 import { BarChart } from "@mui/x-charts/BarChart";
 
 const HoursWorked = ({ id }) => {
-    const [data, setData] = useState([]);
-    const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-    const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-    const xLabels = [
-        "Page A",
-        "Page B",
-        "Page C",
-        "Page D",
-        "Page E",
-        "Page F",
-        "Page G",
-    ];
+    const [data, setData] = useState({
+        workingHours: [],
+        overtimeHours: [],
+        date: [],
+    });
 
     useEffect(() => {
         function getAllLocalStorageValues() {
             const localStorageValues = [];
+
             for (let i = 0; i < localStorage.length; i++) {
                 const valueString = localStorage.getItem(localStorage.key(i));
                 try {
@@ -36,22 +30,30 @@ const HoursWorked = ({ id }) => {
 
         // Example usage:
         const allValues = getAllLocalStorageValues();
-        console.log(allValues);
+        console.log("All values:", allValues);
 
-        setData(extractWorkData(allValues));
+        try {
+            const extractedData = extractWorkData(allValues);
+            console.log("Extracted data:", extractedData);
+            setData(extractedData);
+        } catch (error) {
+            console.error("Error extracting work data:", error);
+        }
     }, []);
 
     return (
         <div>
-            <BarChart
-                width={750}
-                height={500}
-                series={[
-                    { data: data.workingHours, label: "Total Working Hours", id: "Total Working Hours" },
-                    { data: data.overtimeHours, label: "Total Overtime Hours", id: "Total Overtime Hours" },
-                ]}
-                xAxis={[{ data: data.date, scaleType: "band" }]}
-            />
+            {data && (
+                <BarChart
+                    width={500}
+                    height={300}
+                    series={[
+                        { data: data.workingHours, label: "Total Working Hours", id: "Total Working Hours" },
+                        { data: data.overtimeHours, label: "Total Overtime Hours", id: "Total Overtime Hours" },
+                    ]}
+                    xAxis={[{ data: data.date, scaleType: "band" }]}
+                />
+            )}
         </div>
     );
 };
