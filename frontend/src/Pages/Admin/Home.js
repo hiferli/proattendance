@@ -15,7 +15,7 @@ const Home = ({ name , id }) => {
 
         <div>
                 {mode === 1 ? (
-                    <Statistics />
+                    <Statistics id={id} />
                 ) : mode === 2 ? (
                     <Enquiry />
                 ) : mode === 3 ? (

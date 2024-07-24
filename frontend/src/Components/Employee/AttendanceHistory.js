@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Table from "../Table";
-import PieAttendance from "../PieAttendance";
+import PieAttendance from "../Employee/Charts/PieAttendance";
 import HoursLineChart from "./Charts/HoursLineChart";
 
 const AttendanceHistory = ({ name, id }) => {
